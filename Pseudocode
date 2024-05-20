@@ -1,0 +1,63 @@
+class ColorPaletteGenerator: 
+    def __init__(self): # attributes for each color type
+        self.warm_colors = ["red", "orange", "yellow"] 
+        self.cool_colors = [“purple”, "blue", "green"] 
+        self.neutral_colors = []  # Exclude hues 
+        self.pastel_colors = []   # Use only tints 
+
+    def narrow_down_colors(self, user_preference): # using user input to determine which colors to use
+        if user_preference == "warm": 
+            return self.warm_colors 
+        elif user_preference == "cool": 
+            return self.cool_colors 
+        elif user_preference == "neutral": 
+            return self.neutral_colors 
+        elif user_preference == "pastel": 
+            return self.pastel_colors 
+        else: 
+            return [] 
+
+class ColorScheme: # attributes for each color scheme
+    def __init__(self, narrowed_colors): 
+        self.colors = narrowed_colors 
+ 
+    def get_monochromatic(self): 
+        # Use only one color 
+        return [self.colors[0]] 
+ 
+    def get_analogous(self): 
+        # Use any three adjacent colors 
+        return self.colors[:3] 
+ 
+    def get_complementary(self): 
+        # Use opposite colors 
+        return [self.colors[0], self.colors[-1]] 
+
+def main(): 
+
+    user_preference = input("Enter your color preference (warm, cool, neutral,  
+                              pastel): ") 
+
+    scheme_type = input("Enter scheme type (monochromatic, analogous,  
+                          complementary): ")
+
+    # these can also go in the defined function for color scheme
+    if scheme_type == "monochromatic": 
+        palette = color_scheme.get_monochromatic() 
+    elif scheme_type == "analogous": 
+        palette = color_scheme.get_analogous() 
+    elif scheme_type == "complementary": 
+        palette = color_scheme.get_complementary() 
+
+    num_colors = int(input("Enter the number of colors in your palette (3 or  
+                              more): ")) 
+ 
+    if num_colors < 3: 
+        print("Palette must have at least 3 colors.") 
+        return 
+
+    print(f"Your {combination_type} color palette:") 
+    print(palette[:num_colors]) 
+ 
+if __name__ == "__main__": 
+    main() 
